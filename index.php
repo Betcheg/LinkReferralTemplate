@@ -133,19 +133,20 @@ $ipv = $_SERVER['REMOTE_ADDR'];
 
 ?>
 <p/><center>
-<div id="lien_persoavant"> Votre lien perso: <br/></div><div id="lien_perso">http://betcheg.xyz/clic/?id=
 
-<?php
+	<?php
 
-				$reponse = $bdd->prepare('SELECT id FROM id WHERE aleatoire = ? ')  ;
-				$reponse ->execute(array($cid))  ;  // ON RECUPERE L'ID
-				$donnees = $reponse->fetch();
-				if($donnees['id'] != null)
-				{
-					echo $donnees['id'];
-				}
-?>
+					$reponse = $bdd->prepare('SELECT id FROM id WHERE aleatoire = ? ')  ;
+					$reponse ->execute(array($cid))  ;  // ON RECUPERE L'ID
+					$donnees = $reponse->fetch();
+					$numPerso = 0;
+					if($donnees['id'] != null)
+					{
+						$numPerso = $donnees['id'];
+					}
+	?>
 
+<div id="lien_persoavant"> Votre lien perso: <br/></div><div id="lien_perso">http://betcheg.xyz/clic/?id=<?php echo $numPerso;?>
 </div><p/>
 
 Vous avez eu <span class="nombreclic">
@@ -182,7 +183,7 @@ if ( $nclic >= 5 ) // Exemple de verrouillage, ici le contenu est verrouillé ta
 }
 else
 {
-	echo "<b>Vous n'avez pas encore atteind les 5 ...</b>";
+	echo "<b>Vous n'avez pas encore atteint les 5 ...</b>";
 }
 ?>
 
