@@ -1,6 +1,5 @@
 <?php
 ini_set('display_errors', 1);
-
 include 'db_connect.php';
 
 $ipv = $_SERVER['REMOTE_ADDR'];
@@ -9,9 +8,7 @@ $ipv = $_SERVER['REMOTE_ADDR'];
 
 		if (isset ($_COOKIE['id0']))    // Le cookie existe deja
 			{
-
-
-				$cid = $_COOKIE['id0'];
+				$cid = htmlspecialchars($_COOKIE['id0']);
 			}
 		else
 			{
@@ -25,7 +22,6 @@ $ipv = $_SERVER['REMOTE_ADDR'];
 					$code_aleatoire .= substr($characts,rand()%(strlen($characts)),1);
 			}
 			// FIN GENERATION DU CODE ALEATOIRE
-
 
 			$req = $bdd->prepare('INSERT INTO id (ip,aleatoire) VALUES(?,?)'); // Le cookie n'existe pas, on le cr��.
 			$req->execute(array($ipv,$code_aleatoire));
@@ -42,8 +38,7 @@ $ipv = $_SERVER['REMOTE_ADDR'];
 			$req->execute(array('monid' => $monid));
 			}
 
-
-// DEBUT DU CODE CSS?>
+?>
 
 <head>
 <link rel="stylesheet" type="text/css" href="css.css">
@@ -138,26 +133,35 @@ $ipv = $_SERVER['REMOTE_ADDR'];
 
 ?>
 <p/><center>
-<div id="lien_persoavant"> Votre lien perso: <br/></div><div id="lien_perso">http://betcheg.xyz/clic/?id=<?php
+<div id="lien_persoavant"> Votre lien perso: <br/></div><div id="lien_perso">http://betcheg.xyz/clic/?id=
 
+<?php
 
 				$reponse = $bdd->prepare('SELECT id FROM id WHERE aleatoire = ? ')  ;
-				$reponse ->execute(array($cid))  ;  // ON RECUPERE LE NOMBRE DE CLIC
+				$reponse ->execute(array($cid))  ;  // ON RECUPERE L'ID
 				$donnees = $reponse->fetch();
+				if($donnees['id'] != null)
+				{
+					echo $donnees['id'];
+				}
+?>
 
-				echo $donnees['id'];
+</div><p/>
 
-
-$coo = $_COOKIE['id0'];
-
-?></div><p/>
 Vous avez eu <span class="nombreclic">
 <?php
 $reponse = $bdd->prepare('SELECT nclic FROM id WHERE aleatoire = ? ')  ;
 $reponse ->execute(array($cid))  ;  // ON RECUPERE LE NOMBRE DE CLIC
 $donnees = $reponse->fetch();
 $nclic = $donnees['nclic'];
+if($donnees['nclic'] != null)
+{
 echo $nclic;
+}
+else
+{
+	 echo "0";
+}
 ?> </span> visites sur votre lien !<p/>
 
 </div>
@@ -172,13 +176,13 @@ Il vous faut <span class="nombreclic">5</span> clics pour debloquer le contenu <
 
 <?php
 
-if ( $nclic >= 5 )
+if ( $nclic >= 5 ) // Exemple de verrouillage, ici le contenu est verrouillé tant que l'utilisateur n'a pas obtenu 5 clics
 {
 	echo "<h1>Bravo</h1>";
 }
 else
 {
-	echo "<b>Vous n'avez pas encore atteinds les 5 ...</b>";
+	echo "<b>Vous n'avez pas encore atteind les 5 ...</b>";
 }
 ?>
 
