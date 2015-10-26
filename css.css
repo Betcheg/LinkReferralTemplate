@@ -1,0 +1,62 @@
+body
+{
+	background-color: #446CB3;
+}
+
+span.nombreclic
+{
+	font-family: impact, sans-serif;
+	color: #446CB3;
+	font-size: 18px;
+	letter-spacing: 0pt;
+	display: inline;
+}
+
+div#lien_perso
+{
+	font-family: impact, sans-serif;
+	color: #446CB3;
+	font-size: 30px;
+	letter-spacing: 0pt;
+}
+
+
+div#lien_persoavant
+{
+	font-family: impact, sans-serif;
+	font-size: 30px;
+	letter-spacing: 0pt;
+}
+
+
+div#menu
+{
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+	width: 1000px;
+	padding-left: 10px;
+	padding-top: 100px;
+	padding-bottom: 108px;
+	position: relative;
+	margin: auto;
+}
+
+
+div#bandeaubas
+{
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+	width: 880px;
+	text-align: center;
+	margin-top: 10px;
+	margin:auto;
+	padding-top: 32px;
+	padding-bottom: 16px;
+	padding-left: 10px;
+}
