@@ -26,10 +26,10 @@ else
 
 
 	$reponse = $bdd->query("SELECT id,aleatoire FROM id WHERE ip = '$ipv'  ");
-
 	$donnees = $reponse->fetch();
 	$monid = $donnees['id'];
 	$cid = $donnees['aleatoire'];
+
 	setcookie('id0', $code_aleatoire, time() + 365*24*3600);
 
 	$req = $bdd->prepare("UPDATE id SET idinitial = :monid WHERE aleatoire = '$code_aleatoire'  ");
@@ -46,7 +46,7 @@ if (isset ($_GET['id']))
 	$reponse ->execute(array($idi))  ;  //
 	$donnees = $reponse->fetch();
 	$idlevrai = $donnees['id'];
-	// echo "1";
+
 	if (isset ($idlevrai))
 	{
 		$today = date("Y-m-d");
@@ -54,18 +54,14 @@ if (isset ($_GET['id']))
 		$reponse ->execute(array($idi, $ipv))  ;  //
 		$donnees = $reponse->fetch();
 		$date_derniere_co = $donnees['date'];
-		// echo "2";
 
 		if(isset ($date_derniere_co))
-
 		{
 
 			if( $date_derniere_co < $today )
 			{
 				$reponse = $bdd->prepare('SELECT nclic FROM id WHERE idinitial = ? ')  ;
 				$reponse ->execute(array($idi))  ;  // ON RECUPERE LE NOMBRE DE CLIC
-
-
 				$donnees = $reponse->fetch();
 				$nclic = $donnees['nclic'];
 
@@ -109,7 +105,7 @@ if (isset ($_GET['id']))
 
 	else
 	{
-		// echo " L id nexiste pas dans la base ";
+		// echo " L id n'existe pas dans la base ";
 	}
 }
 else
@@ -119,7 +115,7 @@ else
 
 
 $reponse = $bdd->prepare('SELECT id,nclic FROM id WHERE aleatoire = ? ')  ;
-$reponse ->execute(array($cid))  ;  // ON RECUPERE L'ID
+$reponse ->execute(array($cid))  ;  // ON RECUPERE L'ID ET LE NOMBRE DE CLIC
 $donnees = $reponse->fetch();
 $numPerso = ($donnees['id'] == null) ? 0 : $donnees['id'];
 $nclic = ($donnees['nclic'] == null) ? 0 : $donnees['nclic'];
