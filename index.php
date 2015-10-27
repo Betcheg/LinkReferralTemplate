@@ -23,7 +23,7 @@ $nclic; // Le nombre de clic totalisé sur le lien
 
 			<p/>
 
-			Vous avez eu <span class="nombreclic"> <?php echo $nclic ?></span> visites sur votre lien !<p/>
+			Vous avez eu <span class="nombreclic"> <?php echo $nclic; ?></span> visites sur votre lien !<p/>
 
 		</div>
 
@@ -36,7 +36,12 @@ $nclic; // Le nombre de clic totalisé sur le lien
 			<?php
 
 			// Exemple de verrouillage, ici le contenu est verrouillé tant que l'utilisateur n'a pas obtenu 5 clics
-			($nclic >= 5)  ? 	echo "<h1>Bravo</h1>" : echo "<b>Vous n'avez pas encore atteint les 5 ...</b>";
+			if ($nclic >= 5)	{
+				echo "<h1>Bravo</h1>";
+			}
+			else {
+				echo "<b>Vous n'avez pas encore atteint les 5 ...</b>";
+			}
 
 			?>
 
