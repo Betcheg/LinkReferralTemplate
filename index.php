@@ -50,6 +50,5 @@ $nclic; // Le nombre de clic totalisé sur le lien
 		</div>
 	</div>
 </div>
-
 </body>
 </html>
