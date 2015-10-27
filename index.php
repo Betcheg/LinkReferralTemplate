@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+
 include 'db_connect.php';
 include 'code_metier.php';
 
