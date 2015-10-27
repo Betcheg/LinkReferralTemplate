@@ -27,8 +27,9 @@ $nclic; // Le nombre de clic totalisé sur le lien
 
 		</div>
 
-		<p/>
-		<div id="bandeaubas">
+	<p/>
+
+	<div id="bandeaubas">
 
 			<br><br>
 			Il vous faut <span class="nombreclic">5</span> clics pour debloquer le contenu <br/>
